@@ -22,7 +22,7 @@ def test_model(model,test_set,old_user=None,old_item=None,topK=10,need_pbar=Fals
     # print(data.shape)
     # print("recall:", np.array(recall_all).mean(), "ndcg : ", np.array(ndcg_all).mean())
     recall_all = np.array(recall_all)
-    ndcg_all = np.array(ndcg_all)
+    ndcg_all = np.array([t.cpu() for t in ndcg_all])
     return recall_all.sum()/num_test,ndcg_all.sum()/num_test
 
 def test_model_pre(model,test_set,old_user=None,new_user=None,old_item=None,new_item=None,topK=10,need_pbar=False):
